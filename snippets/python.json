@@ -1,0 +1,16 @@
+{
+  "Django ForeignKey": {
+    "prefix": "djfk",
+    "description": "Django ForeignKey field",
+    "body": [
+      "${1:field_name} = models.ForeignKey(",
+      "    '${2:RelatedModel}',",
+      "    related_name='${3:related_name}',",
+      "    null=True,",
+      "    blank=True,",
+      "    default=None,",
+      "    on_delete=models.SET_NULL,",
+      ")"
+    ]
+  }
+}
