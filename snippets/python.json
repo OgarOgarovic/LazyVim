@@ -1,16 +1,118 @@
 {
+  "Debug print": {
+    "prefix": "pdbg",
+    "description": "My debug printout",
+    "body": [
+      "print(f'OGR-DBG-PRT ${1:printout}')"
+    ]
+  },
   "Django ForeignKey": {
-    "prefix": "djfk",
+    "prefix": "djmffk",
     "description": "Django ForeignKey field",
     "body": [
       "${1:field_name} = models.ForeignKey(",
-      "    '${2:RelatedModel}',",
-      "    related_name='${3:related_name}',",
-      "    null=True,",
-      "    blank=True,",
-      "    default=None,",
-      "    on_delete=models.SET_NULL,",
+      "\t'${2:RelatedModel}',",
+      "\trelated_name='${3:related_name}',",
+      "\tnull=True,",
+      "\tblank=True,",
+      "\tdefault=None,",
+      "\ton_delete=models.SET_NULL,",
+      "\tverbose_name=_('${4:Vebose name}'),",
+      "\thelp_text=_('${5:Help text}'),",
       ")"
+    ]
+  },
+  "Django Choice CharField": {
+    "prefix": "djmfchoi",
+    "description": "Django Choice Char field",
+    "body": [
+      "class ${1:ChoicesClassName}(models.TextChoices):",
+      "\t${2:FIRST_CHOICE} = '${3:value}', _('${4:Label}')",
+      "${5:field_name} = models.CharField(",
+      "\tnull=False,",
+      "\tblank=False,",
+      "\tmax_length=32,",
+      "\tchoices=${1:ChoicesClassName}.choices,",
+      "\tdefault=${1:ChoicesClassName}.${2:FIRST_CHOICE},",
+      "\tverbose_name=_('${6:Vebose name}'),",
+      "\thelp_text=_('${7:Help text}'),",
+      ")"
+    ]
+  },
+  "Django CharField": {
+    "prefix": "djmfchf",
+    "description": "Django Char field",
+    "body": [
+      "${1:field_name} = models.CharField(",
+      "\tnull=False,",
+      "\tblank=True,",
+      "\tmax_length=${2:32},",
+      "\tdefault='',",
+      "\tverbose_name=_('${3:Verbose name}'),",
+      "\thelp_text=_('${4:Help text}'),",
+      ")"
+    ]
+  },
+  "Django IntegerField": {
+    "prefix": "djmfif",
+    "description": "Django integer field",
+    "body": [
+      "${1:field_name} = models.IntegerField(",
+      "\tnull=True,",
+      "\tblank=True,",
+      "\tdefault=None,",
+      "\tverbose_name=_('${2:Vebose name}'),",
+      "\thelp_text=_('${3:Help text}'),",
+      ")"
+    ]
+  },
+  "Django BooleanField": {
+    "prefix": "djmfbo",
+    "description": "Django bool field",
+    "body": [
+      "${1:field_name} = models.BooleanField(",
+      "\tnull=False,",
+      "\tblank=False,",
+      "\tdefault=False,",
+      "\tverbose_name=_('${2:Vebose name}'),",
+      "\thelp_text=_('${3:Help text}'),",
+      ")"
+    ]
+  },
+  "Django DecimalField": {
+    "prefix": "djmfdf",
+    "description": "Django decimal field",
+    "body": [
+      "${1:field_name} = models.DecimalField(",
+      "\tmax_digits=${2:12},",
+      "\tdecimal_places=${3:2},",
+      "\tnull=True,",
+      "\tblank=True,",
+      "\tdefault=None,",
+      "\tverbose_name=_('${4:Vebose name}'),",
+      "\thelp_text=_('${5:Help text}'),",
+      ")"
+    ]
+  },
+  "Django ManyToManyField": {
+    "prefix": "djmfm2m",
+    "description": "Django ForeignKey field",
+    "body": [
+      "${1:field_name} = models.ManyToManyField(",
+      "\t'${2:RelatedModel}',",
+      "\tthrough='${3:MembershipModel}',",
+      "\tthrough_fields=('${4:this_ref_field}', '${5:other_ref_field}'),",
+      "\tverbose_name=_('${6:Vebose name}'),",
+      "\thelp_text=_('${7:Help text}'),",
+      ")"
+    ]
+  },
+  "Django FilterSet Method": {
+    "prefix": "djcmfiltm",
+    "description": "Django FilterSet Method",
+    "body": [
+      "def ${1:method_name}(self, queryset, name, value):",
+      "\t${2:pass}"
     ]
   }
 }
